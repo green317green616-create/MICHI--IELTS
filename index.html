@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>MICHI IELTS</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="app">
+
+    <header class="main-header">
+      <h1>MICHI IELTS</h1>
+      <p>Speaking Deck / Vocabulary / Study Log</p>
+    </header>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Speaking Deck</h2>
+      </div>
+
+      <label>カテゴリー</label>
+      <select id="categorySelect" onchange="renderTitleSelect()">
+        <option value="">カテゴリーを選ぶ</option>
+      </select>
+
+      <label>タイトル</label>
+      <select id="titleSelect" onchange="showSelectedCard()">
+        <option value="">タイトルを選ぶ</option>
+      </select>
+
+      <div id="selectedSpeaking" class="selected-box"></div>
+
+      <div class="controls">
+        <button onclick="editSpeaking()">✏️ 編集</button>
+        <button onclick="deleteSpeaking()">🗑 削除</button>
+      </div>
+
+      <div class="controls">
+        <button onclick="playSelected()">▶ 読む</button>
+        <button onclick="stopSpeech()">■ 停止</button>
+        <button onclick="rewindTen()">↩ 10秒戻し</button>
+      </div>
+
+      <label>再生速度</label>
+      <select id="speed">
+        <option value="0.8">0.8x</option>
+        <option value="1" selected>1.0x</option>
+        <option value="1.2">1.2x</option>
+        <option value="1.5">1.5x</option>
+      </select>
+
+      <div class="checks">
+        <label class="check-item">
+          <input type="checkbox" id="oneRepeat" />
+          ワンリピート
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" id="autoNext" />
+          自動遷移
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Speaking追加・編集</h2>
+      </div>
+
+      <label>カテゴリー</label>
+      <input id="newCategory" placeholder="例：犬 / 仕事 / IELTS" />
+
+      <label>タイトル</label>
+      <input id="newTitle" placeholder="例：My dog Sara" />
+
+      <label>日本語メモ</label>
+      <textarea id="newJapanese" placeholder="日本語メモ"></textarea>
+
+      <label>英文</label>
+      <textarea id="newEnglish" placeholder="英語本文"></textarea>
+
+      <div class="controls">
+        <button onclick="addSpeaking()">＋ Speaking追加</button>
+        <button onclick="undoLastAction()">↩ Undo</button>
+        <button onclick="clearSpeakingForm()">テキストリセット</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Vocabulary追加・編集</h2>
+      </div>
+
+      <label>単語</label>
+      <input id="newWord" placeholder="important" />
+
+      <label>意味</label>
+      <input id="newMeaning" placeholder="重要な" />
+
+      <label>パラフレーズ</label>
+      <textarea id="newParaphrase" placeholder="significant / essential / crucial"></textarea>
+
+      <label>例文</label>
+      <textarea id="newExample" placeholder="This is a significant issue."></textarea>
+
+      <div class="controls">
+        <button onclick="addVocab()">＋ 単語追加</button>
+        <button onclick="undoLastAction()">↩ Undo</button>
+        <button onclick="clearVocabForm()">テキストリセット</button>
+      </div>
+
+      <div id="vocabList"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Study Log</h2>
+      </div>
+
+      <div class="log-box">
+        <p>Speaking再生：<span id="speakingCount">0</span> 回</p>
+        <p>Vocabulary再生：<span id="vocabCount">0</span> 回</p>
+      </div>
+
+      <button onclick="resetLog()">ログをリセット</button>
+    </section>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>Backup</h2>
+      </div>
+
+      <p id="autoBackupStatus">
+        自動バックアップ：まだ実行されていません
+      </p>
+
+      <div class="controls">
+        <button onclick="manualAutoBackup()">今すぐ自動バックアップ保存</button>
+        <button onclick="restoreAutoBackup()">自動バックアップから復元</button>
+      </div>
+
+      <label>バックアップデータ</label>
+      <textarea
+        id="backupBox"
+        placeholder="Exportするとここにデータが出ます。Importするときはここに貼ります。"
+      ></textarea>
+
+      <div class="controls">
+        <button onclick="exportData()">Export</button>
+        <button onclick="importData()">Import</button>
+        <button onclick="resetAllData()" class="danger-button">All Reset</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
