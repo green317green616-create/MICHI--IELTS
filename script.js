@@ -151,7 +151,8 @@ function speakText(text, type = "speaking", startWordIndex = 0) {
   const utter = new SpeechSynthesisUtterance(textToRead);
   utter.lang = "en-GB";
   utter.rate = Number(document.getElementById("speed")?.value || 1);
-
+utter.pitch = 1.08;
+utter.volume = 1.0;
   const voices = speechSynthesis.getVoices();
   const britishVoice =
     voices.find(v => v.lang === "en-GB") ||
