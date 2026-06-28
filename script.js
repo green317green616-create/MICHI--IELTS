@@ -176,17 +176,17 @@ function speakText(text, type = "speaking", startWordIndex = 0) {
     const autoNext = document.getElementById("autoNext")?.checked;
 
     if (oneRepeat && autoNext) {
-      setTimeout(() => playNextSpeaking(), 500);
+      setTimeout(() => playNextSpeaking(), 1000);
       return;
     }
 
     if (oneRepeat) {
-      setTimeout(() => playSelected(), 500);
+      setTimeout(() => playSelected(), 1000);
       return;
     }
 
     if (autoNext) {
-      setTimeout(() => playNextSpeaking(), 500);
+      setTimeout(() => playNextSpeaking(), 1000);
     }
   };
 
